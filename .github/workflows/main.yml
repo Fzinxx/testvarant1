@@ -13,9 +13,11 @@ jobs:
     - name: Checkout do código
       uses: actions/checkout@v3
     
-    - name: Atualizar site
-      run: |
-        cd /var/www/html/testvarant1
-        sudo git pull origin main
-        sudo systemctl restart nginx
-        echo "Deploy realizado com sucesso em $(date)"
+   - name: Atualizar site
+  run: |
+    cd /var/www/html/testvarant1
+    sudo git reset --hard HEAD
+    sudo git clean -fd
+    sudo git pull origin main
+    sudo systemctl restart nginx
+    echo "Deploy realizado com sucesso em $(date)"
